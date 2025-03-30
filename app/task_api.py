@@ -40,7 +40,7 @@ async def question_solver(
     data = {"question": question}
     
     headers = {
-        "user_name": "22f2000113",             
+        "user_name": os.getenv('user_name'),             
     }
     
     # Make the POST request to the external API using httpx
