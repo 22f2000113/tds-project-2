@@ -47,10 +47,9 @@ async def run_tasks(
             files = {
                 f"file{i}": (file[i].filename, await file[i].read()) for i in range(len(file))
             }
-
-        headers = {
-            "user_name": os.getenv('user_name'),             
-         }
+        headers = {}
+        if user_name:
+            headers["custom_header"] = user_name  
         # Use httpx to forward the request to the external API
         async with httpx.AsyncClient() as client:
             response = await client.post(api_url, data=data, files=files,headers=headers)
