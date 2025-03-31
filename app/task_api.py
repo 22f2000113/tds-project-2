@@ -32,11 +32,12 @@ app.add_middleware(
 async def question_solver(
     question: str = Form(...),
     file: Optional[List[UploadFile]] = File(None)):
-
+  
     files = {"file": []}
-    for f in file:
-        files["file"].append((f.filename, f.file, f.content_type))
-
+    if file:
+        for f in file:
+            files["file"].append((f.filename, f.file, f.content_type))
+   
     data = {"question": question}
     
     headers = {
@@ -49,7 +50,8 @@ async def question_solver(
 
     # Handle the response from the external API
     return response
+    
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=5000)
