@@ -43,7 +43,7 @@ async def question_solver(
     headers = {
         "user_name": os.getenv('user_name'),             
     }
-    
+    print(f"uril is {api_url} and user_name {os.getenv('user_name')}")
     # Make the POST request to the external API using httpx
     async with httpx.AsyncClient() as client:
         response = await client.post(api_url, data=data, files=files,headers=headers)
